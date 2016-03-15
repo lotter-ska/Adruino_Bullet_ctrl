@@ -1,7 +1,11 @@
 /*
 
-  RFI Mobile Control Software.
-   Commands:
+ created  Jun 2015
+ by Lötter Kock
+
+
+RFI Mobile Control Software.
+Commands:
  SW11 = SW1 in pos 1
  SW12 = SW1 in pos 2
  SW21 = SW2 in pos 1
@@ -42,6 +46,8 @@
 TD =  SWITCH ND AT (INPUT(Hz))
 ND =  PULSE ND
 ND1 = SWITCH ND PN FOR INPUT(MS)
+NON = ND ON
+NOF = ND OFF
 ==================================================================================
 
 Rotator control:
@@ -61,8 +67,6 @@ w/orange 1 0 to 180 Deg
 green 8 common grnd
 w/brown 7 Provides 13V to 6V DC @ 200mA
 
- created  Jun 2015
- by Lötter Kock
  */
 #include <math.h>
 // pins for the Outputs Arduino MEGA:
@@ -136,10 +140,7 @@ void setup() {
   pinMode(HOR, OUTPUT);
   pinMode(VER, OUTPUT);
 
-
-
 }
-
 
 void loop() {
   serialEvent(); //call the function
@@ -265,7 +266,6 @@ void check_command(){
       digitalWrite(LNA11, 0);
       digitalWrite(LNA21, 0);    
     }
-
 
     else if (command == "ND+") {
       Serial.println(command);
